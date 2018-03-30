@@ -12,7 +12,7 @@ var todoList = {
     this.displayTodos();
   },
   changeTodo: function(position, value) {
-    this.todos[position] = value;
+    this.todos[position].todoText = value;
     this.displayTodos();
   },
   deleteTodo: function(position) {
