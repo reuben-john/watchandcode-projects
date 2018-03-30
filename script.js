@@ -14,8 +14,8 @@ var todoList = {
     this.displayTodos();
   },
   // Changes text of todo item on list
-  changeTodo: function(position, value) {
-    this.todos[position].todoText = value;
+  changeTodo: function(position, todoText) {
+    this.todos[position].todoText = todoText;
     this.displayTodos();
   },
   // Deletes todo from list
