@@ -4,7 +4,7 @@ var todoList = {
   displayTodos: function() {
     console.log("My todos", this.todos);
   },
-  addTodo: function(todo) {
+  addTodo: function(todoText) {
     this.todos.push({
       todoText: todoText,
       completed: false
