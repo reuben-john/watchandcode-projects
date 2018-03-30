@@ -1,10 +1,14 @@
+// Basic todo list
 var todoList = {
-  todos: [1, 2, 3],
+  todos: [],
   displayTodos: function() {
     console.log("My todos", this.todos);
   },
   addTodo: function(todo) {
-    this.todos.push(todo);
+    this.todos.push({
+      todoText: todoText,
+      completed: false
+    });
     this.displayTodos();
   },
   changeTodo: function(position, value) {
