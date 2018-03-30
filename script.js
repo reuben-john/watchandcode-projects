@@ -24,23 +24,23 @@ var todoList = {
       todoText: todoText,
       completed: false
     });
-    this.displayTodos();
+    view.displayTodos();
   },
   // Changes text of todo item on list
   changeTodo: function(position, todoText) {
     this.todos[position].todoText = todoText;
-    this.displayTodos();
+    view.displayTodos();
   },
   // Deletes todo from list
   deleteTodo: function(position) {
     this.todos.splice(position, 1);
-    this.displayTodos();
+    view.displayTodos();
   },
   // Toggles completed boolean on todo
   toggleCompleted: function(position) {
     var todo = this.todos[position];
     todo.completed = !todo.completed;
-    this.displayTodos();
+    view.displayTodos();
   },
   // If all todos are completed, set them all to not completed
   // Otherwise all are set to completed
@@ -62,7 +62,7 @@ var todoList = {
         this.todos[i].completed = true;
       }
     }
-    this.displayTodos();
+    view.displayTodos();
   }
 };
 
@@ -104,5 +104,17 @@ var handlers = {
   },
   toggleAll: function() {
     todoList.toggleAll();
+  }
+};
+
+var view = {
+  displayTodos: function() {
+    var todosUl = document.querySelector("ul");
+    todosUl.innerHTML = "";
+    for (var i = 0; i < todoList.todos.length; i++) {
+      var todoLi = document.createElement("li");
+      todoLi.textContent = todoList.todos[i].todoText;
+      todosUl.appendChild(todoLi);
+    }
   }
 };
