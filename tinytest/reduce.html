@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Simple Testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="tinytest.js"></script>
+    <!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+    <script>
+
+        // function reduce(array, callback, startingValue) {
+        //     var resultSoFar = startingValue
+        //     for (var i = 0; i < array.length; i++) {
+        //         resultSoFar = callback(resultSoFar, array[i])
+        //     }
+        //     return resultSoFar
+        // }
+
+        // reduce(array, , callback[, initialValue])
+
+        // callback parameters:
+        // previousValue
+        // currentValue
+        // currentIndex
+        // array
+
+        // Returns a single value
+
+        // Description:
+
+        // Executes the callback function once for each element present in the array
+        // Excludes holes in the array (e.g. [/* hole */, 1])
+
+        // Case A: initialValue is provided
+        //      previousValue will be equal to the initialValue
+        //      currentValue will be equal to the first value in the array
+
+        //      callback will start at index 0
+
+        // Case B: InitialValue not provided
+        //      previousValue will be equal to the first value in the array.
+        //      currentValue will be equal to the second
+        
+        //      callback will start at index 1, which is second element
+
+
+        // Edge cases:
+        //      If array is empty and no initialValue was provided, TypeError should be
+        //      thrown
+        
+        //      reduce([], function(){}) ==> TypeError
+
+        //      If array has one element (regardless of position) and no initialValue
+        //      was provided, or if initial value was provided but the array is empty,
+        //      the solo value would be returned, without calling callback
+        
+        //      reduce([/* hole */, 1], function () {})
+        //      return 1 without calling callback
+
+        //      reduce([1], function (){})
+        //      return 1 without calling callback
+
+        //      reduce([], function () {}, 0)
+        //      return 0 without calling callback
+ 
+        //      reduce([/* hole */, /* hole */], function () {}, 0)
+        //      return 0 without calling callback
+ 
+
+
+    </script>
+</body>
+
+</html>
