@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Simple Testing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="tinytest.js"></script>
+    <!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+    <script>
+        function forEach(array, callback, configurableThisObject) {
+            var forEachCallback = callback
+            if (configurableThisObject) {
+                forEachCallback = callback.bind(configurableThisObject)
+            }
+
+            for (var i = 0; i < array.length; i++)
+                forEachCallback(array[i], i, array)
+        }
+        tests({
+            'It should run the callback function array.length times': function () {
+                var counter = 0
+                forEach([1, 2, 3], function () {
+                    counter++
+                })
+                eq(counter, 3)
+            },
+            'It should pass ing the ith element as the first argument to the callback': function () {
+                forEach([1], function (number) {
+                    eq(number, 1)
+                })
+            },
+            'It should pass in the ith position as the second argument of the callback': function () {
+                forEach([1], function(number, index) {
+                    eq(index, 0)
+                })
+            },
+            'It should pass the original array that forEAch is being applied to as the third argument to the callback': function () {
+                var testArray = [1]
+                forEach(testArray, function(number, index, originalArray) {
+                    eq(originalArray, testArray)
+                })
+            },
+            'It should accept a configurable this object': function () {
+                forEach([1], function(y){
+                    eq(this.description, "I am a configurable this object")
+                }, {description: "I am a configurable this object"})
+            }
+        })
+    </script>
+</body>
+
+</html>
