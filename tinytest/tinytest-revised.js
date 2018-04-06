@@ -37,6 +37,11 @@
  * -Joe Walnes
  * MIT License. See https://github.com/joewalnes/jstinytest/
  */
+
+// TODO: Show stack traces for failures
+// TODO: Only show stack traces to the DOM
+// TODO: Output summary statistics to the DOM
+
 const TinyTest = {
 
   run: function (tests) {
@@ -45,10 +50,10 @@ const TinyTest = {
       let testAction = tests[testName]
       try {
         testAction()
-        console.log('Test:', testName, 'OK')
+        console.log('%c%s', 'color:green; font-weight:bold', testName)
       } catch (e) {
         failures++
-        console.error('Test:', testName, 'FAILED', e)
+        console.error('%c%s', 'color:red; font-weight:bold', testName, e)
         console.error(e.stack)
       }
     }
