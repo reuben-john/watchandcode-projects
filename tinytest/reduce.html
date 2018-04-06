@@ -14,6 +14,7 @@
 <body>
     <script>
 
+        // Prototype implementation
         // function reduce(array, callback, startingValue) {
         //     var resultSoFar = startingValue
         //     for (var i = 0; i < array.length; i++) {
@@ -22,55 +23,48 @@
         //     return resultSoFar
         // }
 
+        // Function signature:
         // reduce(array, , callback[, initialValue])
 
         // callback parameters:
-        // previousValue
-        // currentValue
-        // currentIndex
-        // array
+        //    previousValue
+        //    currentValue
+        //    currentIndex
+        //    array
 
-        // Returns a single value
+        // Return value:
+        //    Returns a single value
 
         // Description:
 
-        // Executes the callback function once for each element present in the array
-        // Excludes holes in the array (e.g. [/* hole */, 1])
-
-        // Case A: initialValue is provided
-        //      previousValue will be equal to the initialValue
-        //      currentValue will be equal to the first value in the array
-
-        //      callback will start at index 0
-
-        // Case B: InitialValue not provided
-        //      previousValue will be equal to the first value in the array.
-        //      currentValue will be equal to the second
         
-        //      callback will start at index 1, which is second element
 
+        // If initialValue, previousValue should be equal to initialValue
+        // If initialValue, currentValue will be equal to the first value in the array
+        // If initialValue, callback will start at index 0
 
-        // Edge cases:
-        //      If array is empty and no initialValue was provided, TypeError should be
-        //      thrown
+        // If no initialValue, previousValue will be equal to the first value in the array
+        // If no initialValue, currentValue will be equal to the second value in the array
+        // If no initialValue, callback will start at index 1
         
-        //      reduce([], function(){}) ==> TypeError
-
-        //      If array has one element (regardless of position) and no initialValue
-        //      was provided, or if initial value was provided but the array is empty,
-        //      the solo value would be returned, without calling callback
+        // Callback should not run on holes in the array
         
-        //      reduce([/* hole */, 1], function () {})
-        //      return 1 without calling callback
+        //  If array is empty, and no initialValue, throw TypeError
+        //  reduce([], function() {}) >>> TypeError
 
-        //      reduce([1], function (){})
-        //      return 1 without calling callback
+        //  If array has one element, and no initialValue, return only element without
+        //  calling callback
+        //    reduce([/* hole */, 1], function () {})
+        //    return 1 without calling callback
+        
+        //    reduce([1], function (){})
+        //    return 1 without calling callback
+        
+        //  If array is empty, and there is an initialValue, return initialValue
 
-        //      reduce([], function () {}, 0)
-        //      return 0 without calling callback
+        //    reduce([], function () {}, 0) >>> return 0 without calling callback
  
-        //      reduce([/* hole */, /* hole */], function () {}, 0)
-        //      return 0 without calling callback
+        //    reduce([/* hole */, /* hole */], function () {}, 0) >>> return 0 without calling callback
  
 
 
