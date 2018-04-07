@@ -38,14 +38,22 @@
  * MIT License. See https://github.com/joewalnes/jstinytest/
  */
 
-// TODO: Show stack traces for failures
-// TODO: Only show stack traces to the DOM
-// TODO: Output summary statistics to the DOM
+var TintyTestHelper = {
+  renderStats: function (tests, failures) {
+    let numberOfTests = Object.keys(tests).length
+    let successes = numberOfTests - failures
+    let summaryMessage = ('Ran ' + numberOfTests + ' tests: ' + successes + ' successes, ' + failures + ' failures')
+    let summaryElement = document.createElement('h1')
+    summaryElement.textContent = summaryMessage
+    document.body.appendChild(summaryElement)
+  }
+}
 
 const TinyTest = {
 
   run: function (tests) {
     let failures = 0
+
     for (let testName in tests) {
       let testAction = tests[testName]
       try {
@@ -61,6 +69,7 @@ const TinyTest = {
     setTimeout(function () { // Give document a chance to complete
       if (window.document && document.body) {
         document.body.style.backgroundColor = (failures == 0 ? '#99ff99' : '#ff9999')
+        TintyTestHelper.renderStats(tests, failures)
       }
     }, 0)
   },
