@@ -4,6 +4,7 @@
 (function() {
   var libraryStorage = {};
 
+  //
   function librarySystem(libraryName, dependencies, callback) {
     if (arguments.length > 1) {
       mappedDependencies = [];
@@ -12,7 +13,7 @@
           return libraryStorage[dependency];
         });
       }
-      libraryStorage[libraryName] = callback.apply(this, mappedDependencies);
+      libraryStorage[libraryName] = callback.apply(null, mappedDependencies);
     } else {
       return libraryStorage[libraryName];
     }
