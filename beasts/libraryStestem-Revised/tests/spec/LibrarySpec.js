@@ -12,17 +12,16 @@ describe("librarySystem Tests", function() {
     expect(librarySystem("app")).toBe("app with loaded dependency");
   });
   it("should be able to create a library with two or more dependencies", function() {
-    librarySystem("name", [], function() {
-      return "Gordon";
-    });
-
-    librarySystem("company", [], function() {
-      return "Watch and Code";
-    });
-
     librarySystem("workBlurb", ["name", "company"], function(name, company) {
       return name + " works at " + company;
     });
     expect(librarySystem("workBlurb")).toBe("Gordon works at Watch and Code");
+  });
+  librarySystem("name", [], function() {
+    return "Gordon";
+  });
+
+  librarySystem("company", [], function() {
+    return "Watch and Code";
   });
 });
