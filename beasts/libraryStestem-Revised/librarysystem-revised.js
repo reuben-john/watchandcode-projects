@@ -15,18 +15,34 @@
   var libraryStorage = {};
 
   function librarySystem(libraryName, dependencies, callback) {
+    // Create library
     if (arguments.length > 1) {
-      mappedDependencies = [];
-      if (dependencies.length > 0) {
-        mappedDependencies = dependencies.map(function(dependency) {
-          return libraryStorage[dependency];
-        });
-      }
-      libraryStorage[libraryName] = callback.apply(null, mappedDependencies);
+      libraryStorage[libraryName] = {
+        dependency: dependencies,
+        callback: callback,
+        cached: false
+      };
     } else {
-      return libraryStorage[libraryName];
+      // Retrieve library from storage
+      var library = libraryStorage[libraryName];
+      if (library === undefined) {
+        return " " + libraryName + " library is undefined.";
+      }
+      if (library.cached === false) {
+        // Only runs if callback has not yet been run
+        // Recursively works through dependencies in the library, loading each one
+        var mappedDependencies = library.dependency.map(function(dependency) {
+          return librarySystem(dependency);
+        });
+
+        // Records to dataCache to allow for retrieval without running callback again
+        library.dataCache = library.callback.apply(null, mappedDependencies);
+        // Sets cached status to true to ensure callback is not run again
+        library.cached = true;
+      }
+      // Returns cached data
+      return library.dataCache;
     }
   }
-
   window.librarySystem = librarySystem;
 })();
