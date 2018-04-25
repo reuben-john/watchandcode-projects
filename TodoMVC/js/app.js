@@ -1,4 +1,8 @@
 /*global jQuery, Handlebars, Router */
+// render() currently does more than render data
+// It needs split up to make it more 'honest'
+// rewrite it to not use util.store
+
 jQuery(function($) {
   "use strict";
 
