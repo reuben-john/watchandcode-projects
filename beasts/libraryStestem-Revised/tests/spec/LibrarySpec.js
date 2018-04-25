@@ -1,21 +1,3 @@
-// This is an example of a library that keeps the global namespace clean
-// by storing modules to a librarySystem
-
-(function() {
-  var libraryStorage = {};
-
-  function librarySystem(libraryName, dependencies, callback) {
-    if (arguments.length > 1) {
-      libraryStorage[libraryName] = callback();
-    } else {
-      return libraryStorage[libraryName];
-    }
-  }
-  global.librarySystem = librarySystem;
-})();
-
-// Example functions
-
 // librarySystem("dependency", [], function() {
 //   return "loaded dependency";
 // });
