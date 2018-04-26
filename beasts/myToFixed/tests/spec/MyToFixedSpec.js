@@ -17,6 +17,10 @@ describe("My isPrototypeOf Tests", function() {
     );
   });
 
+  it("should default to a precision of zero when no precision is included ", function() {
+    expect(toFixedString(10.12)).toBe("10.");
+  });
+
   it("should shift the decimal of an int over by the precision amount", function() {
     expect(toFixedString(10, 4)).toBe("10.0000");
   });

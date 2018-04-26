@@ -18,6 +18,10 @@ function toFixedString(value, precision) {
   // Use variable to allow for comma decimals
   var decimal = ".";
 
+  if (!precision) {
+    precision = 0;
+  }
+
   // Check if value is NaN and spit back an error
   if (typeof value !== "number") {
     return new TypeError(
