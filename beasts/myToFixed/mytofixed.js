@@ -55,23 +55,28 @@ function toFixedString(value, precision) {
   // shift decimal back
   // recombine and return number
 
-  var decimalIndex = strValue.indexOf(decimal);
-  var strValue =
-    strValue.substring(0, decimalIndex) + strValue.substring(decimalIndex + 1);
-  // Increase this by how many places to the right you wish to move. 2 is equal to value * 100
-  decimalIndex += 2;
-  strValue =
-    strValue.substring(0, decimalIndex) +
-    decimal +
-    strValue.substring(decimalIndex);
+  function shiftDecimal(strValue, precision) {
+    var decimalIndex = strValue.indexOf(decimal);
+    var strValue =
+      strValue.substring(0, decimalIndex) +
+      strValue.substring(decimalIndex + 1);
+    // Increase this by how many places to the right you wish to move. 2 is equal to value * 100
+    decimalIndex += 2;
+    strValue =
+      strValue.substring(0, decimalIndex) +
+      decimal +
+      strValue.substring(decimalIndex);
 
-  strValue = Math.round(parseFloat(strValue)).toString();
+    strValue = Math.round(parseFloat(strValue)).toString();
 
-  decimalIndex -= 2;
+    decimalIndex -= 2;
 
-  strValue =
-    strValue.substring(0, decimalIndex) +
-    decimal +
-    strValue.substring(decimalIndex);
-  return parseFloat(strValue);
+    strValue =
+      strValue.substring(0, decimalIndex) +
+      decimal +
+      strValue.substring(decimalIndex);
+    return parseFloat(strValue);
+  }
+
+  return shiftDecimal(strValue, precision);
 }
