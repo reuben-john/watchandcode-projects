@@ -45,7 +45,7 @@ function toFixedString(value, precision) {
     for (var i = 0; i < precision; i++) {
       strValue += "0";
     }
-    return parseFloat(strValue);
+    return strValue;
   }
 
   // Split the string at the decimal place
@@ -82,7 +82,7 @@ function toFixedString(value, precision) {
       strValue.substring(0, decimalIndex) +
       decimal +
       strValue.substring(decimalIndex);
-    return parseFloat(strValue);
+    return strValue;
   }
 
   return shiftDecimal(strValue, precision);
