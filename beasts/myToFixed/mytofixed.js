@@ -47,4 +47,31 @@ function toFixedString(value, precision) {
     }
     return parseFloat(strValue);
   }
+
+  // Split the string at the decimal place
+  // insert decimal in 2nd string based on precision
+  // recombine to one string
+  // convert number, round, then convert back to string
+  // shift decimal back
+  // recombine and return number
+
+  var decimalIndex = strValue.indexOf(decimal);
+  var strValue =
+    strValue.substring(0, decimalIndex) + strValue.substring(decimalIndex + 1);
+  // Increase this by how many places to the right you wish to move. 2 is equal to value * 100
+  decimalIndex += 2;
+  strValue =
+    strValue.substring(0, decimalIndex) +
+    decimal +
+    strValue.substring(decimalIndex);
+
+  strValue = Math.round(parseFloat(strValue)).toString();
+
+  decimalIndex -= 2;
+
+  strValue =
+    strValue.substring(0, decimalIndex) +
+    decimal +
+    strValue.substring(decimalIndex);
+  return parseFloat(strValue);
 }
