@@ -24,5 +24,16 @@ function toFixed(value, precision) {
 // If value was an int, add a decimal to the end based on number of precision
 
 function toFixedString(value, precision) {
-  var strValue = toString(value);
+  var strValue = value.toString();
+  // Use variable to allow for comma decimals
+  var decimal = ".";
+
+  if (Number.isInteger(value)) {
+    // If value is int, append decimal and zeros
+    strValue += decimal;
+    for (var i = 0; i < precision; i++) {
+      strValue += "0";
+    }
+    return strValue;
+  }
 }
