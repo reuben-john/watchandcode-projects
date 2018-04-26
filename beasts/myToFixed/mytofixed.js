@@ -45,6 +45,6 @@ function toFixedString(value, precision) {
     for (var i = 0; i < precision; i++) {
       strValue += "0";
     }
-    return strValue;
+    return parseFloat(strValue);
   }
 }
