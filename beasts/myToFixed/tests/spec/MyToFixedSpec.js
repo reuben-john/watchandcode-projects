@@ -6,7 +6,7 @@ describe("My isPrototypeOf Tests", function() {
   });
   it("should return a TypeError when the precision is not a positive integer", function() {
     expect(toFixedString(10, -1).toString()).toBe(
-      "TypeError: Please use a float or integer for the first argument"
+      "TypeError: Please use a positive integer for the second argument"
     );
   });
 });
