@@ -28,6 +28,17 @@ function toFixedString(value, precision) {
   // Use variable to allow for comma decimals
   var decimal = ".";
 
+  // Check if value is NaN and spit back an error
+  if (typeof value !== "number") {
+    return new TypeError(
+      "Please use a float or integer for the first argument"
+    );
+  } else if (!Number.isInteger(precision) || precision < 0) {
+    return new TypeError(
+      "Please use a positive integer for the second argument"
+    );
+  }
+
   if (Number.isInteger(value)) {
     // If value is int, append decimal and zeros
     strValue += decimal;
