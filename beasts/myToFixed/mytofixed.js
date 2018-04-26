@@ -1,15 +1,5 @@
 // Rewrite accounting.toFixed to use string manipulation to move the decimal place and round.
 
-// Current function from account.js
-function toFixed(value, precision) {
-  precision = checkPrecision(precision, lib.settings.number.precision);
-
-  var exponentialForm = Number(lib.unformat(value) + "e" + precision);
-  var rounded = Math.round(exponentialForm);
-  var finalResult = Number(rounded + "e-" + precision).toFixed(precision);
-  return finalResult;
-}
-
 // value: int or float
 // precision: int
 // If value has less decimals then precision, add 0s. 1.1 with 2 precision = 1.10
