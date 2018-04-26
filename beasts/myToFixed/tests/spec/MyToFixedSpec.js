@@ -18,6 +18,6 @@ describe("My isPrototypeOf Tests", function() {
   });
 
   it("should shift the decimal of an int over by the precision amount", function() {
-    expect(toFixedString(10, 1)).toBe(10.0);
+    expect(toFixedString(10, 4)).toBe("10.0000");
   });
 });
