@@ -54,7 +54,10 @@ function toFixedString(value, precision) {
   // convert number, round, then convert back to string
   // shift decimal back
   // recombine and return number
-
+  var negative = Boolean(!strValue.indexOf("-"));
+  if (negative) {
+    strValue = strValue.substring(1);
+  }
   function shiftDecimal(strValue, precision) {
     var decimalIndex = strValue.indexOf(decimal);
     var lengthCheck = strValue.substring(decimalIndex + 1).length;
@@ -89,6 +92,9 @@ function toFixedString(value, precision) {
       strValue.substring(0, decimalIndex) +
       decimal +
       strValue.substring(decimalIndex);
+    if (negative) {
+      strValue = "-" + strValue;
+    }
     return strValue;
   }
 
