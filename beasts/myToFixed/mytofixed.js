@@ -57,11 +57,18 @@ function toFixedString(value, precision) {
 
   function shiftDecimal(strValue, precision) {
     var decimalIndex = strValue.indexOf(decimal);
+    var lengthCheck = strValue.substring(decimalIndex + 1).length;
+    if (lengthCheck < precision) {
+      var addZeros = precision - lengthCheck;
+      for (var j = 0; j < addZeros; j++) {
+        strValue += "0";
+      }
+    }
     var strValue =
       strValue.substring(0, decimalIndex) +
       strValue.substring(decimalIndex + 1);
     // Increase this by how many places to the right you wish to move. 2 is equal to value * 100
-    decimalIndex += 2;
+    decimalIndex += precision;
     strValue =
       strValue.substring(0, decimalIndex) +
       decimal +
@@ -69,7 +76,7 @@ function toFixedString(value, precision) {
 
     strValue = Math.round(parseFloat(strValue)).toString();
 
-    decimalIndex -= 2;
+    decimalIndex -= precision;
 
     strValue =
       strValue.substring(0, decimalIndex) +
