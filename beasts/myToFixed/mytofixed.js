@@ -39,13 +39,19 @@ function toFixedString(value, precision) {
     );
   }
 
+  var negative = "";
+  if (Boolean(!strValue.indexOf("-"))) {
+    negative = "-";
+    strValue = strValue.substring(1);
+  }
+
   if (Number.isInteger(value)) {
     // If value is int, append decimal and zeros
     strValue += decimal;
     for (var i = 0; i < precision; i++) {
       strValue += "0";
     }
-    return strValue;
+    return negative + strValue;
   }
 
   // Split the string at the decimal place
@@ -54,10 +60,7 @@ function toFixedString(value, precision) {
   // convert number, round, then convert back to string
   // shift decimal back
   // recombine and return number
-  var negative = Boolean(!strValue.indexOf("-"));
-  if (negative) {
-    strValue = strValue.substring(1);
-  }
+
   function shiftDecimal(strValue, precision) {
     var decimalIndex = strValue.indexOf(decimal);
     var lengthCheck = strValue.substring(decimalIndex + 1).length;
@@ -92,9 +95,9 @@ function toFixedString(value, precision) {
       strValue.substring(0, decimalIndex) +
       decimal +
       strValue.substring(decimalIndex);
-    if (negative) {
-      strValue = "-" + strValue;
-    }
+
+    strValue = negative + strValue;
+
     return strValue;
   }
 
