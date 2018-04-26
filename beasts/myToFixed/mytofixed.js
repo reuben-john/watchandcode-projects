@@ -59,12 +59,17 @@ function toFixedString(value, precision) {
     var decimalIndex = strValue.indexOf(decimal);
     var lengthCheck = strValue.substring(decimalIndex + 1).length;
     if (lengthCheck < precision) {
-      var addZeros = precision - lengthCheck;
-      for (var j = 0; j < addZeros; j++) {
+      var addZerosToBack = precision - lengthCheck;
+      for (var j = 0; j < addZerosToBack; j++) {
         strValue += "0";
       }
     }
-    var strValue =
+
+    lengthCheck = strValue.substring(0, decimalIndex);
+    if (lengthCheck == 0) {
+      var addZerosToFront = lengthCheck;
+    }
+    strValue =
       strValue.substring(0, decimalIndex) +
       strValue.substring(decimalIndex + 1);
     // Increase this by how many places to the right you wish to move. 2 is equal to value * 100
@@ -74,10 +79,12 @@ function toFixedString(value, precision) {
       decimal +
       strValue.substring(decimalIndex);
 
-    strValue = Math.round(parseFloat(strValue)).toString();
-
+    var roundedValue = Math.round(parseFloat(strValue)).toString();
+    if (addZerosToFront) {
+      roundedValue = addZerosToFront + roundedValue;
+    }
+    strValue = roundedValue;
     decimalIndex -= precision;
-
     strValue =
       strValue.substring(0, decimalIndex) +
       decimal +
